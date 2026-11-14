@@ -1,16 +1,69 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+# Rwanda Opportunities Explorer 🇷🇼
 
-Currently, two official plugins are available:
+## About the Project
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Rwanda Opportunities Explorer is a responsive web application built with React, Vite, and Tailwind CSS.
 
-## React Compiler
+It helps learners discover workshops, career events, community activities, and short courses taking place in different cities across Rwanda.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Features
 
-## Expanding the Oxlint configuration
+- Display opportunities using reusable React components.
+- Search opportunities by title or city.
+- Filter opportunities by category.
+- Filter available opportunities.
+- View saved opportunities.
+- Sort opportunities by date, title, and available seats.
+- Add new opportunities using a form.
+- Validate form information before submission.
+- Save and unsave opportunities.
+- Store opportunities and saved items using localStorage.
+- Display demo loading and error states.
+- Responsive design for different screen sizes.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+## Technologies Used
+
+- React
+- JavaScript
+- Vite
+- Tailwind CSS
+- HTML5
+- CSS3
+- Browser localStorage
+
+## Sample Data
+
+The application uses sample opportunity data from different Rwandan cities, including Kigali, Huye, Musanze, and Rubavu.
+
+The sample data is for demonstration purposes.
+
+## Installation
+
+1. Clone this repository:
+
+   git clone YOUR_GITHUB_REPOSITORY_URL
+   
+
+2. Enter the project folder:
+
+   cd rwanda-opportunities-explorer
+   
+
+3. Install dependencies:
+
+   npm install
+
+
+4. Start the development server:
+
+   npm run dev
+   
+
+5. Open the local URL displayed in your terminal.
+
+## Build
+
+To create a production build, run:
+
+npm run build

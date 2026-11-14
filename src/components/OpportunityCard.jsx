@@ -1,14 +1,13 @@
 
 import Button from "./Button"
-import Badge from "./badge"
+import Badge from "./Badge"
 
 function OpportunityCard({ opportunity, isSaved, onToggleSave }) {
   return (
-    <div className="bg-white rounded-xl shadow-md border border-gray-100 p-5 hover:shadow-lg transition">
+    <div className="bg-white rounded-xl shadow-md border border-[#D4AF37] p-6 hover:shadow-xl transition">
 
-      {/* Opportunity title */}
-      <div className="flex justify-between items-start gap-3 mb-3">
-        <h2 className="text-xl font-bold text-gray-800">
+      <div className="flex justify-between items-start gap-3 mb-4">
+        <h2 className="text-xl font-bold text-black">
           {opportunity.title}
         </h2>
 
@@ -17,37 +16,38 @@ function OpportunityCard({ opportunity, isSaved, onToggleSave }) {
         )}
       </div>
 
-      {/* Category */}
       <Badge color="purple">
         {opportunity.category}
       </Badge>
 
-      {/* Description */}
       <p className="text-gray-600 my-4">
         {opportunity.description}
       </p>
 
-      {/* Opportunity information */}
-      <div className="space-y-2 text-sm text-gray-700">
-        <p> City: {opportunity.city}</p>
-        <p>Date: {opportunity.date}</p>
+      <div className="space-y-3 text-sm text-gray-700">
+        <p> <strong>City:</strong> {opportunity.city}</p>
+
+        <p> <strong>Date:</strong> {opportunity.date}</p>
 
         <p>
-          Available places: {opportunity.availableSeats}
+           <strong>Total Capacity:</strong> {opportunity.capacity}
         </p>
 
         <p>
-           Price:{" "}
+           <strong>Available Seats:</strong> {opportunity.availableSeats}
+        </p>
+
+        <p>
+           <strong>Price:</strong>{" "}
           {opportunity.price === 0
             ? "Free"
             : `${opportunity.price.toLocaleString()} RWF`}
         </p>
       </div>
 
-      {/* Availability status */}
-      <div className="flex flex-wrap gap-2 mt-4">
+      <div className="flex flex-wrap gap-2 mt-5">
         {opportunity.availableSeats === 0 ? (
-          <Badge color="red">Fully booked</Badge>
+          <Badge color="red">Fully Booked</Badge>
         ) : (
           <Badge color="green">Available</Badge>
         )}
@@ -57,13 +57,12 @@ function OpportunityCard({ opportunity, isSaved, onToggleSave }) {
         )}
       </div>
 
-      {/* Save button */}
-      <div className="mt-5">
+      <div className="mt-6">
         <Button
           variant={isSaved ? "secondary" : "primary"}
           onClick={() => onToggleSave(opportunity.id)}
         >
-          {isSaved ? "Unsave" : "Save Opportunity"}
+          {isSaved ? "Unsave Opportunity" : "Save Opportunity"}
         </Button>
       </div>
 

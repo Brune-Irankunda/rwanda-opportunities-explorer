@@ -42,15 +42,28 @@ function AddOpportunityForm({ onAddOpportunity }) {
       return
     }
 
-    if (
-      formData.capacity === "" ||
-      Number(formData.capacity) < 0 ||
-      formData.price === "" ||
-      Number(formData.price) < 0
-    ) {
-      setError("Capacity and price must be zero or greater.")
-      return
-    }
+   if (
+  formData.capacity === "" ||
+  !Number.isInteger(Number(formData.capacity)) ||
+  Number(formData.capacity) < 0
+) {
+  setError("Capacity must be a whole number greater than or equal to zero.")
+  return
+}
+
+if (
+  formData.price === "" ||
+  !Number.isFinite(Number(formData.price)) ||
+  Number(formData.price) < 0
+) {
+  setError("Price must be zero or greater.")
+  return
+}
+
+if (new Date(formData.date) < new Date(new Date().toDateString())) {
+  setError("Please select today or a future date.")
+  return
+}
 
     const newOpportunity = {
       id: crypto.randomUUID(),
