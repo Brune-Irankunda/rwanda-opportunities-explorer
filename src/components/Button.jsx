@@ -7,10 +7,10 @@ function Button({
   disabled = false,
 }) {
   const styles = {
-    primary: "bg-indigo-600 text-white hover:bg-indigo-700",
-    secondary: "bg-gray-200 text-gray-800 hover:bg-gray-300",
-    danger: "bg-red-600 text-white hover:bg-red-700",
-  }
+  primary: "bg-black text-[#D4AF37] hover:bg-gray-800",
+  secondary: "bg-[#D4AF37] text-black hover:bg-[#B8962E]",
+  danger: "bg-red-700 text-white hover:bg-red-800",
+}
 
   return (
     <button

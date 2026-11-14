@@ -29,15 +29,15 @@ function OpportunityCard({ opportunity, isSaved, onToggleSave }) {
 
       {/* Opportunity information */}
       <div className="space-y-2 text-sm text-gray-700">
-        <p>📍 City: {opportunity.city}</p>
-        <p>📅 Date: {opportunity.date}</p>
+        <p> City: {opportunity.city}</p>
+        <p>Date: {opportunity.date}</p>
 
         <p>
-          👥 Available places: {opportunity.availableSeats}
+          Available places: {opportunity.availableSeats}
         </p>
 
         <p>
-          💰 Price:{" "}
+           Price:{" "}
           {opportunity.price === 0
             ? "Free"
             : `${opportunity.price.toLocaleString()} RWF`}
