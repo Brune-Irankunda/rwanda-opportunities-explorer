@@ -1,19 +1,51 @@
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { seedOpportunities } from "./data/seedOpportunities"
+import Button from "./components/Button"
 import OpportunityList from "./components/OpportunityList"
 import OpportunityFilters from "./components/OpportunityFilters"
 import AddOpportunityForm from "./components/AddOpportunityForm"
 
+function loadData(key, fallback) {
+  try {
+    const storedData = localStorage.getItem(key)
+    return storedData ? JSON.parse(storedData) : fallback
+  } catch {
+    return fallback
+  }
+}
+
 function App() {
-  const [opportunities, setOpportunities] = useState(seedOpportunities)
-  const [savedIds, setSavedIds] = useState([])
+  const [opportunities, setOpportunities] = useState(() =>
+    loadData("rwandaOpportunities", seedOpportunities)
+  )
+
+  const [savedIds, setSavedIds] = useState(() =>
+    loadData("savedOpportunities", [])
+  )
 
   const [search, setSearch] = useState("")
   const [category, setCategory] = useState("All")
   const [availableOnly, setAvailableOnly] = useState(false)
   const [savedOnly, setSavedOnly] = useState(false)
   const [sortBy, setSortBy] = useState("date")
+
+  // Demo loading and error state
+  const [demoStatus, setDemoStatus] = useState("ready")
+
+  useEffect(() => {
+    localStorage.setItem(
+      "rwandaOpportunities",
+      JSON.stringify(opportunities)
+    )
+  }, [opportunities])
+
+  useEffect(() => {
+    localStorage.setItem(
+      "savedOpportunities",
+      JSON.stringify(savedIds)
+    )
+  }, [savedIds])
 
   function handleToggleSave(id) {
     setSavedIds((previousIds) =>
@@ -119,11 +151,50 @@ function App() {
           Showing <strong>{filteredOpportunities.length}</strong> opportunities
         </p>
 
-        <OpportunityList
-          opportunities={filteredOpportunities}
-          savedIds={savedIds}
-          onToggleSave={handleToggleSave}
-        />
+        {/* Demo status buttons */}
+        <section className="mb-6 bg-white p-5 rounded-xl shadow-sm">
+          <h3 className="text-lg font-bold text-black mb-3">
+            Demo Application States
+          </h3>
+
+          <div className="flex flex-wrap gap-3">
+            <Button onClick={() => setDemoStatus("ready")}>
+              Show Opportunities
+            </Button>
+
+            <Button
+              variant="secondary"
+              onClick={() => setDemoStatus("loading")}
+            >
+              Simulate Loading
+            </Button>
+
+            <Button
+              variant="danger"
+              onClick={() => setDemoStatus("error")}
+            >
+              Simulate Error
+            </Button>
+          </div>
+        </section>
+
+        {/* Conditional rendering */}
+        {demoStatus === "loading" ? (
+          <p className="text-center text-[#A88719] py-10 font-semibold">
+            Loading opportunities... Please wait.
+          </p>
+        ) : demoStatus === "error" ? (
+          <div className="text-center bg-red-50 text-red-700 p-6 rounded-xl">
+            <p className="font-bold">Something went wrong!</p>
+            <p>Please try again.</p>
+          </div>
+        ) : (
+          <OpportunityList
+            opportunities={filteredOpportunities}
+            savedIds={savedIds}
+            onToggleSave={handleToggleSave}
+          />
+        )}
       </main>
     </div>
   )
